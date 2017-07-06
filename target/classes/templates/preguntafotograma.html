@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Selecciona la respuesta correcta</title>
+<link rel="stylesheet" href="../css/normalize.css"/>
+<link rel="stylesheet" href="../css/bootstrap.css"/>
+<script type="text/javascript" src="js/jquery320.js"></script>
+<style>
+	body{
+	background-color: #9edee5;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row"><br/>
+			<div class="col-md-6 col-md-offset-3"><img src="/fotogramas/cabecera.png" th:src="@{/fotogramas/cabecera.png}"/><br/></div>
+		</div>
+		<div class="row, text-center">
+			<h1>Hola, <span th:text="${loginUsuario}"></span></h1>
+		</div>
+		<div class="row, text-center">
+		<div th:if="${sinFotogramas == 0}" class="row, text-center">
+			<div class="col-md-6 col-md-offset-3">
+				<img alt="fotograma" src="#" th:src="@{/fotogramas/__ ${listaFotogramas.get(3)}__}" class="img-responsive" id="imagenFotograma"/>
+				<h4>Seleccione una respuesta:</h4>
+				<form action="#" th:action="@{/respuestaController/responder}" method="post" id="formRespuesta">
+					<!-- Envía un token para evitar vulnerabilidades web conocidas -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<div class="radio">
+					<label>
+    					<input type="radio" name="opcionSeleccionada" id="opcion1valor" th:value="${listaFotogramas.get(0)}" checked="checked"/>
+    					<span th:text="${listaFotogramas.get(0)}"></span>
+  					</label>
+					</div>
+					<div class="radio">
+					<label>
+    					<input type="radio" name="opcionSeleccionada" id="opcion2valor" th:value="${listaFotogramas.get(1)}"/><span th:text="${listaFotogramas.get(1)}"></span>
+  					</label>
+					</div>
+					<div class="radio">
+					<label>
+    					<input type="radio" name="opcionSeleccionada" id="opcion3valor" th:value="${listaFotogramas.get(2)}"/><span th:text="${listaFotogramas.get(2)}"></span>
+  					</label>
+					</div>
+					<input type="submit" value="Responder" class="btn btn-primary"/>
+				</form><br/>
+			</div>
+		</div>
+		</div>
+		<div class="row"><br/>
+			<div class="col-md-6 col-md-offset-3">
+				<div th:if="${sinFotogramas == 1}" class="alert alert-danger" role="alert">No quedan fotogramas</div>
+			</div>
+		</div>
+		<div class="row, text-center"><br/>
+			<div class="col-md-4 col-md-offset-4">
+				<form th:action="@{/logout}" method="POST">
+					<button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Salir</button>
+				</form>
+				<a href="#" th:href="@{/preguntaController/admintest}">
+					<button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Prueba rol admin</button>
+				</a>
+				<form action="#" th:action="@{/verranking}" method="get">
+					<input type="submit" value="Consulta Ranking" class="btn btn-primary"/>
+				</form>
+				<form action="#" th:action="@{/estadisticasController/ver}" method="get">
+					<input type="submit" value="Ver Estadíticas" class="btn btn-primary"/>
+				</form>
+			</div>
+		</div> 
+	</div>
+</body>
+</html>

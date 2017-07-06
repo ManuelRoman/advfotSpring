@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Adivina fotograma en Spring</title>
+<link rel="stylesheet" href="css/normalize.css"/>
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<script type="text/javascript" src="js/jquery320.js"></script>
+<script type="text/javascript" src="js/funcionesIndex.js"></script>
+<style>
+	body{
+	background-color: #9edee5;
+	}
+	#login{
+	display: none;
+	}
+	#registro{
+	display: none;
+	}
+</style>
+</head>
+<body>
+	<div class="container"><br/>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3"><img src="/fotogramas/cabecera.png" th:src="@{/fotogramas/cabecera.png}"/><br/></div>
+		</div>
+		<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="text-center" id="general">
+				<p>Seleccione una acción:</p>
+				<button id="mostrarLogin" class="btn btn-primary">Formulario de logueo</button><br/><br/>
+				<button id="mostrarRegistro" class="btn btn-primary">Formulario de Registro</button><br/><br/>
+				<form action="#" th:action="@{/verranking}" method="get">
+					<input type="submit" value="Consulta Ranking" class="btn btn-primary"/>
+				</form> 
+			</div>
+			<!--Formulario de logueo-->
+			<div id="login">
+				<form action="#" th:action="@{/logincheck}" method="POST">
+					<!-- Envía un token para evitar vulnerabilidades web conocidas -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<div class="form-group">
+						<label for="login2">Login usuario:</label>
+						<input class="form-control" id="login2" type="text" name="login" maxlength="12" placeholder="Máximo 12" required="required" pattern="\S*"/><br/>
+					</div>
+					<div class="form-group">
+						<label for="clave">Clave:</label>
+						<input class="form-control" id="clave" type="password" name="clave" maxlength="12" placeholder="Máximo 12" required="required" autocomplete="off" pattern="\S*"/><br/>
+					</div>
+					<input type="hidden" name="accion" value="login"/>
+					<div class="text-center">
+						<input type="submit" value="Login" class="btn btn-primary"/>
+					</div>
+				</form><br/>
+				<form action="" method="get">
+					<div class="text-center">
+						<input type="submit" value="Volver al inicio" class="btn btn-primary"/>
+					</div>
+				</form>	
+			</div>
+			<!--Formulario de registro-->
+			<div id="registro">
+				<form action="#" th:action="@{/addUsuario}" method="post" id="formRegistro">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<div class="form-group">
+						<label for="login3">Login usuario:</label>
+						<input class="form-control" id="login3" type="text" name="login" maxlength="12" placeholder="Máximo 12" required="required" pattern="\S*"/>
+					</div>
+					<div class="form-group">
+						<label for="clave">Clave:</label>
+						<input class="form-control" id="clave" type="password" name="clave" maxlength="12" placeholder="Máximo 12" required="required" autocomplete="off" pattern="\S*"/>
+					</div>
+					<div class="text-center">
+						<input type="submit" value="Registro" class="btn btn-primary"/>
+					</div><br/>
+				</form><hr/>
+				<form action="#" th:action="@{/compruebalogin}" method="post" id="compruebaLogin">
+					<div class="form-group">
+						<label for="login4">Login usuario:</label>
+						<input class="form-control" id="login4" type="text" name="login" maxlength="12" placeholder="Máximo 12" required="required" pattern="\S*"/>
+					</div>
+					<div class="text-center">
+						<input type="submit" value="Comprobar login" class="btn btn-primary"/>
+					</div><br/>
+				</form>
+				<form action="" method="get">
+					<div class="text-center">
+					<input type="submit" value="Volver al inicio" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-4 col-md-offset-4"><br/>
+			<div class="text-center" id="mensajes">
+			<div th:if="${error !=null}" class="alert alert-danger" role="alert">Nombre de usuario o clave incorrecta</div>
+        	<div th:if="${salir !=null}" class="alert alert-info" role="alert">Salió correctamente</div>
+        	<div th:if="${existe == 0}" class="alert alert-success" role="alert">El login está libre</div>
+			<div th:if="${existe == 1}" class="alert alert-danger" role="alert">El login está ocupado</div>
+			<div th:if="${registro == 1}" class="alert alert-success" role="alert">Registro realizado</div>
+			<div th:if="${registro == 0}" class="alert alert-danger" role="alert">No se pudo registrar, intentelo más tarde.</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

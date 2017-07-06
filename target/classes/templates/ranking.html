@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Raking</title>
+<link rel="stylesheet" href="css/normalize.css"/>
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<script type="text/javascript" src="js/jquery320.js"></script>
+<script type="text/javascript" src="js/funcionesIndex.js"></script>
+<style>
+	body{
+	background-color: #9edee5;
+	}
+</style>
+</head>
+<body>
+	<div class="container"><br/>
+	<div class="row">
+			<div class="col-md-6 col-md-offset-3"><img src="/fotogramas/cabecera.png" th:src="@{/fotogramas/cabecera.png}"/><br/></div>
+	</div>
+	<!-- Contenedor del ranking de jugadores -->
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+	<h3 class="text-center">Ranking de las 10 puntuaciones más altas</h3>
+	<div class="table-responsive">
+	<table class="table table-hover">
+	<thead>
+  		<tr>
+    		<th>Login</th>
+    		<th>Puntuación</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr th:each="ranking : ${listaRanking}">
+			<td th:text="${ranking.login}"></td>
+			<td th:text="${ranking.puntos}"></td>
+		</tr>
+    </tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="text-center">
+	<div class="col-md-4 col-md-offset-4">
+		<a href="#" th:href="@{/}">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Volver al incio</button>
+		</a>
+	</div>
+	</div>
+	</div>
+	</div>
+</body>
+</html>

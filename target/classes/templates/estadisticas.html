@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Estadísticas</title>
+<link rel="stylesheet" href="../css/normalize.css"/>
+<link rel="stylesheet" href="../css/bootstrap.css"/>
+<script type="text/javascript" src="js/jquery320.js"></script>
+<style>
+	body{
+	background-color: #9edee5;
+	}
+</style>
+</head>
+<body>
+	<div class="container"><br/>
+	<div class="row">
+			<div class="col-md-6 col-md-offset-3"><img src="/fotogramas/cabecera.png" th:src="@{/fotogramas/cabecera.png}"/><br/></div>
+	</div>
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+	<h3 class="text-center">Ranking de las 10 puntuaciones más altas</h3>
+	<div class="table-responsive">
+	<table class="table table-hover">
+	<thead>
+  		<tr>
+    		<th>Núm de fotogramas ofrecidos</th>
+    		<th>Núm de fotogramas acertados</th>
+    		<th>Puntos</th>
+    		<th>Tanto por ciento de acierto</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+			<td th:text="${datosJuego.numFotOfrecidosSesion}"></td>
+			<td th:text="${datosJuego.numAciertosSesion}"></td>
+			<td th:text="${datosJuego.puntosSesion}"></td>
+			<td th:text="${datosJuego.porAciertosSesion}"></td>
+		</tr>
+    </tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="text-center">
+	<div class="col-md-4 col-md-offset-4">
+		<a href="#" th:href="@{/}">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Volver al incio</button>
+		</a>
+	</div>
+	</div>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Contenido no autorizado</title>
+<title>Selecciona la respuesta correcta</title>
+<link rel="stylesheet" href="../css/normalize.css"/>
+<link rel="stylesheet" href="../css/bootstrap.css"/>
+<script type="text/javascript" src="js/jquery320.js"></script>
+<style>
+	body{
+	background-color: #9edee5;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row"><br/>
+			<div class="col-md-6 col-md-offset-3"><img src="/fotogramas/cabecera.png" th:src="@{/fotogramas/cabecera.png}"/><br/></div>
+		</div>
+		<div class="row"><br/>
+			<div class="col-md-6 col-md-offset-3">
+				<div class="alert alert-danger" role="alert">No tiene autorización para ver este contenido</div><br/>
+				<a href="#" th:href="@{/}">
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Volver</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
